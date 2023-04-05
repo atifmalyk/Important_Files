@@ -1,0 +1,16 @@
+    public function saveAdons(Request $request)
+    {
+        $addons = json_decode($request->input('addons'), true);
+        // Process and save the addons to the database
+        foreach ($addons as $addon) {
+            $newAddon = new AdonsModel();
+            $newAddon->adon_title = $addon['adon_title'];
+            $newAddon->adon_item = json_encode([
+                'adon_type' => $addon['adon_type'],
+                'adon_price' => $addon['adon_price'],
+                'adon_image' => $addon['adon_image'] ?? null
+            ]);
+            $newAddon->save();
+            return redirect()->back()->with('success', 'Addons saved successfully');
+        }
+    }
