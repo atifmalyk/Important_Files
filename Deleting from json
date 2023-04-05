@@ -1,0 +1,51 @@
+<script>
+    // Handle delete button click
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).on('click', '.delete-addon', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                type: 'DELETE',
+                url: '/addons/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    // Remove the corresponding row from the table
+                    $(this).closest('tr').remove();
+                    alert('Addon deleted successfully');
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                }
+            });
+        });
+    });
+</script>
+
+<-- laravel code -->
+
+
+    Route::delete('/addons/{id}', function ($id){
+        $addons = json_decode(file_get_contents(public_path('addons.json')), true);
+
+        // Find the index of the addon with the given ID
+        $index = array_search($id, array_column($addons, 'id'));
+
+        if ($index !== false) {
+            // If the addon is found, remove it from the array
+            array_splice($addons, $index, 1);
+
+            // Save the updated array of addons to the JSON file
+            file_put_contents(public_path('addons.json'), json_encode($addons));
+
+            // Return a success message
+            return response()->json(['message' => 'Addon deleted successfully']);
+        } else {
+            // If the addon is not found, return an error message
+            return response()->json(['message' => 'Addon not found'], 404);
+        }
+
+    });
