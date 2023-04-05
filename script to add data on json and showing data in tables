@@ -1,0 +1,93 @@
+       </script>
+       
+       $('#addon-form').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var form = $(this);
+            var formData = new FormData(form[0]);
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    // Display success message
+                    alert('Addon added successfully');
+                    // Clear form fields
+
+                    $('#addon_type').val('');
+                    $('#addon_image').val('');
+                    $('#addon_price').val('');
+                    // Append new row to the table
+
+                    // Append cells to the row with the addon data
+                    var newRow = $('<tr>').addClass('addon-row');
+
+                    newRow.append($('<td>').text(data.addon_title));
+                    newRow.append($('<td>').text(data.adon_type));
+
+                    // Create an image element with the URL to the image file
+                    var image = $('<img>').attr('src', '/storage/img/' + data.adon_image).addClass('img-fluid');
+
+                    // Create a new cell element and append the image to it
+                    var cell = $('<td>').append(image);
+
+                    // Append the cell to the new row element
+                    newRow.append(cell);
+
+                    newRow.append($('<td>').text(data.adon_price));
+                    newRow.append($('<td>').append(
+                        $('<div>').addClass('btn-group').append(
+                            $('<button>').addClass('btn btn-primary edit-addon').text('Edit'),
+                            $('<button>').addClass('btn btn-danger delete-addon').text('Delete').data('id', data.id)
+
+                        )
+                    ));
+
+
+                    $('#addon-table tbody').append(newRow);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                }
+            });
+        });
+    });
+</script>
+
+<-- Laravel Code -->
+    public function addAddon(Request $request)
+    {
+        $data = $request->validate([
+            'addon_title' => 'required|string|max:255',
+            'adon_type' => 'required|string|max:255',
+            'adon_image' => 'nullable|image|max:2048',
+            'adon_price' => 'required|numeric',
+        ]);
+
+        if ($request->hasFile('adon_image')) {
+            $image = $request->file('adon_image');
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('/public/img', $filename);
+            $data['adon_image'] = $filename;
+        }
+
+        $addons = [];
+
+        // If the addons JSON file exists, load its contents
+        if (file_exists(public_path('addons.json'))) {
+            $addons = json_decode(file_get_contents(public_path('addons.json')), true);
+        }
+
+        // Add the new addon to the array of addons
+        $data['id'] =uniqid();
+        $addons[] = $data;
+
+
+        // Save the array of addons to the JSON file
+        file_put_contents(public_path('addons.json'), json_encode($addons));
+
+        // Return the new addon data as a JSON response
+        return response()->json($data);
+    }
