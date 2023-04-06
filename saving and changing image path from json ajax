@@ -1,0 +1,35 @@
+
+//    public function saveAddons(Request $request)
+//    {
+////        // Retrieve the addons data from the request
+//        $addonsJsonString = $request->input('addons');
+////
+//        // Convert the JSON string into an array
+//        $addonsArray = json_decode($addonsJsonString, true);
+//
+//        // Loop through the array and save each addon item to the database
+//        foreach ($addonsArray as $addon) {
+//
+//            //CODE TO CHANHE IMAGE PATH
+////            $imagePath = $addon['image'];
+////            $newImagePath = str_replace('\\', '/', str_replace('C:/fakepath/', '/public/img/', $imagePath));
+////
+////
+//////            $newImagePath = str_replace('\\', '/', $newImagePath);
+////
+////            $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
+////            $newImageName = uniqid() . '.' . $imageExtension; // generate a unique file name
+////            $newImageFullPath = public_path($newImagePath . $newImageName); // generate the full path to the new image
+////            move_uploaded_file($imagePath, $newImageFullPath);
+////
+////            // Update the addon image path to the new path
+////            $addon['image'] = $newImagePath . $newImageName;
+//            $newAddon = new AdonsModel();
+//            $newAddon->adon_title=$request->input('addon_title');
+//            $newAddon->adon_item = json_encode($addon);
+//            $newAddon->save();
+//        }
+//        // Redirect to a success page or back to the form
+//        return redirect()->route('addingAdons');
+//    }
+
