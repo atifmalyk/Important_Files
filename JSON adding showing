@@ -1,0 +1,135 @@
+{{--Code to add data into json and show in the table--}}
+{{--    <script>--}}
+{{--        // SENDING IMAGE TO THE SERVER--}}
+{{--        var addons = []; // Array to store addon objects in JSON format--}}
+
+{{--        $(document).ready(function () {--}}
+
+{{--            $("#addAddon").click(function () {--}}
+{{--                // Create a JSON object with values from input fields--}}
+{{--                console.log()--}}
+{{--                var addon = {--}}
+{{--                    'type': $("#addon_type").val(),--}}
+{{--                    'image': $("#addon_image").val(),--}}
+{{--                    'price': $("#addon_price").val()--}}
+{{--                };--}}
+
+{{--                addons.push(addon); // Add the object to the addons array--}}
+{{--                alert(JSON.stringify(addons));--}}
+{{--                // Clear the input fields--}}
+{{--                $("#addon_type").val("");--}}
+{{--                $("#addon_image").val("");--}}
+{{--                $("#addon_price").val("");--}}
+
+{{--                $("#submit-addons").click(function() {--}}
+
+{{--                    // Add the addons array to the form data--}}
+{{--                    var addonsJsonString = JSON.stringify(addons);--}}
+{{--                    $('<input>').attr({--}}
+{{--                        type: 'hidden',--}}
+{{--                        name: 'addons',--}}
+{{--                        value: addonsJsonString--}}
+{{--                    }).appendTo('form');--}}
+
+{{--                    // Submit the button form--}}
+{{--                    $("#submit-json").submit();--}}
+{{--                });--}}
+
+{{--                // Call the function to display the table--}}
+{{--                displayTable();--}}
+{{--            });--}}
+
+
+{{--        $("#table-container").on("click", ".delete-addon", function() {--}}
+{{--            var index = $(this).data("index");--}}
+{{--            deleteAddon(index);--}}
+{{--        });--}}
+{{--    });--}}
+
+{{--    function displayTable() {--}}
+{{--        // Create the table HTML dynamically using jQuery--}}
+{{--        var tableHTML = '<table class="table table-striped"><thead><tr><th>Title</th>' +--}}
+{{--            '<th>Type</th>' +--}}
+{{--            '<th>Image</th>' +--}}
+{{--            '<th>Price</th>' +--}}
+{{--            '<th>Action</th>' +--}}
+{{--            '</tr></thead>' +--}}
+{{--            '<tbody>';--}}
+
+{{--        // Loop through the addons array and create a table row for each object--}}
+{{--        for (var i = 0; i < addons.length; i++) {--}}
+{{--            // Generate the HTML for the edit and delete buttons--}}
+{{--            var editButtonHTML = '<button class="btn btn-primary btn-sm edit-addon" data-index="' + i + '" onclick="editAddon(' + i + ')">Edit</button>';--}}
+{{--            var deleteButtonHTML = '<button class="btn btn-danger btn-sm delete-addon" data-index="' + i + '">Delete</button>';--}}
+
+{{--            // Generate the HTML for the row with the data and buttons--}}
+{{--            tableHTML += '<tr><td>'--}}
+{{--                + addons[i].type + '</td><td>' + addons[i].image +--}}
+{{--                '</td><td>' + addons[i].price + '</td><td>' + editButtonHTML +--}}
+{{--                ' ' + deleteButtonHTML + '</td></tr>';--}}
+{{--        }--}}
+
+{{--        tableHTML += '</tbody></table>';--}}
+
+{{--        // Replace the HTML of the div with the new table--}}
+{{--        $("#table-container").html(tableHTML);--}}
+
+
+{{--    }--}}
+
+{{--    function editAddon(index) {--}}
+{{--        // Remove the addon from the array--}}
+{{--        var addon = addons.splice(index, 1)[0];--}}
+
+{{--        // Populate the form with the addon's data--}}
+{{--        $("#addon_title").val(addon.title);--}}
+{{--        $("#addon_type").val(addon.type);--}}
+{{--        $("#addon_image").val(addon.image);--}}
+{{--        $("#addon_price").val(addon.price);--}}
+
+
+{{--    }--}}
+
+{{--    function deleteAddon(index) {--}}
+{{--        // Use the splice() method to remove the addon at the given index--}}
+{{--        addons.splice(index, 1);--}}
+
+{{--        // Update the table with the new data--}}
+{{--        displayTable();--}}
+{{--    }--}}
+
+
+
+
+
+
+
+
+{{--    // sending data to server--}}
+{{--    // $("#submit-addons").click(function () {--}}
+{{--    //--}}
+{{--    //     // Create a JSON object with values from input fields--}}
+{{--    //     var addon = {--}}
+{{--    //         'addon_title': addons[0].title, // get the value from the adons object--}}
+{{--    //         'addon_item': JSON.stringify(addons)--}}
+{{--    //     };--}}
+{{--    //--}}
+{{--    //--}}
+{{--    //--}}
+{{--    //--}}
+{{--    //     // Send the data to the server using ajax()--}}
+{{--    //     $.ajax({--}}
+{{--    //         url: '/add-data/',--}}
+{{--    //         method: 'post',--}}
+{{--    //         data: addon,--}}
+{{--    //         success: function(response) {--}}
+{{--    //             // Display a success message to the user--}}
+{{--    //             alert("Addons added successfully!");--}}
+{{--    //         },--}}
+{{--    //         error: function(error) {--}}
+{{--    //             // Display an error message to the user--}}
+{{--    //             alert("Failed to add addons: " + error.message);--}}
+{{--    //         }--}}
+{{--    //     });--}}
+{{--    // });--}}
+{{--</script>--}}
