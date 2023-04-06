@@ -1,0 +1,24 @@
+    $("#addon_image").change(function() {
+
+
+                var imageFile = $(this)[0].files[0];
+                var formData = new FormData();
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                formData.append('_token', csrfToken);
+                formData.append('image', imageFile);
+
+                $.ajax({
+                    url: '/upload-image',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response);
+                        $("#addon_image_path").val(response.path);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
