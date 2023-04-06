@@ -1,0 +1,19 @@
+//public  function addJsonToDb(Request $request){
+//   $addon=new  AdonsModel();
+//    $addon->adon_title = $request->addon_title;
+//    $addon->adon_item = $request->addon_item;
+//    $addon->save();
+//
+//    return response()->json(['message' => 'Addons added successfully!']);
+//}
+//
+//    public function uploadImage(Request $request)
+//    {
+//        $file = $request->file('image');
+//        $fileName = time() . '_' . $file->getClientOriginalName();
+//        $file->move(public_path('/public/img'), $fileName);
+//
+//        return response()->json(['path' => '/storage/img/' . $fileName]);
+//    }
+
+
