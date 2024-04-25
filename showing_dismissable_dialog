@@ -1,0 +1,30 @@
+# Showing dismissable dialogue flutter
+Used a variable based on status code of api response
+and then used Obx 
+Check the condition under body of the widget
+if the status code is 200 then the alert box will be shown
+otherwise the normal body with other will be shown
+Following is the code
+ body: Obx(() => controller.statusCode.value == 200
+                ? PopScope(
+              canPop: false,
+                  child: (AlertDialog(
+                      content: Text(
+                          '${controller.responseData.value.isEmpty ? 'Success' : controller.responseData.value.toString()}'),
+                  actions: [
+                        TextButton(
+                          child: const Text("Ok"),
+                          onPressed: () {
+                            Get.back(closeOverlays: true);
+                          },
+                        ),
+                      ],
+                    )),
+                )
+                : SingleChildScrollView(
+                    child: SafeArea(
+                      child: Padding(
+                        padding: const Ed
+...
+
+and remaoning widgets
