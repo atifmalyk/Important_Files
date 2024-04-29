@@ -1,0 +1,10 @@
+#Following is the code to adjust the size of the text dynamically in flutter
+AppBar(
+    centerTitle: true,
+    title: FittedBox(
+        fit: BoxFit.fitWidth, 
+        child: Text('Hey this is my long text appbar title')
+    ),
+),
+
+We can wrap the text around the FittedBox widget and then define the property fit to Box.fixWidht
